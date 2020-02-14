@@ -106,13 +106,14 @@ Sub StockAnalysis()
                     Yearly_Change = Year_Close_Price - Year_Open_Price
 
                     'Calculate the Percent Change 
+                        'Avoid dividing by 0.  If Year Open price is 0, divide by 1 instead of Year Open Price
                     If Year_Open_Price = 0 Then
-                        Percent_Change = 0
+                        Percent_Change = Yearly_Change / 1
+                        'Otherwise, divide by Year Open Price 
                     Else
                         Percent_Change = Yearly_Change / Year_Open_Price
                     End If
-                    'Percent_Change = WorksheetFunction.Round(Unrounded_Percent, 4)
-                    
+                                        
                     ' Print the Ticker Name in the Summary Table
                     ws.Range("I" & Summary_Table_Row).Value = Ticker_Name
 
